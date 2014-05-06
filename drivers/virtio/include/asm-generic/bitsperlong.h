@@ -1,0 +1,6 @@
+#ifndef __ASM_GENERIC_BITSPERLONG_H__
+#define __ASM_GENERIC_BITSPERLONG_H__
+
+/*18*/ #define BITS_PER_LONG 64
+
+#endif

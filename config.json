@@ -1,0 +1,19 @@
+{
+   "modules": {
+        "mgmt": {
+            "type": "direct-dir",
+            "path": "${OSV_BASE}/modules/mgmt/"
+        },
+        "java": {
+            "type": "direct-dir",
+            "path": "${OSV_BASE}/modules/java/"
+        },
+        "tests": {
+            "type": "direct-dir",
+            "path": "${OSV_BASE}/modules/tests/"
+        },
+    "include": [
+        "${OSV_BASE}/apps/modules.json"
+    ]
+   }
+}

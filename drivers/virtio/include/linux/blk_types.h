@@ -1,0 +1,11 @@
+#ifndef __LINUX_BLK_TYPES_H__
+#define __LINUX_BLK_TYPES_H__
+
+/*10*/ #include <linux/types.h>
+/**81**/ struct bio {
+};
+/*154*/ enum rq_flag_bits {__REQ_WRITE = 0, __REQ_FAILFAST_DEV = 1, __REQ_FAILFAST_TRANSPORT = 2, __REQ_FAILFAST_DRIVER = 3, __REQ_SYNC = 4, __REQ_META = 5, __REQ_PRIO = 6, __REQ_DISCARD = 7, __REQ_SECURE = 8, __REQ_NOIDLE = 9, __REQ_FUA = 10, __REQ_FLUSH = 11, __REQ_RAHEAD = 12, __REQ_THROTTLED = 13, __REQ_SORTED = 14, __REQ_SOFTBARRIER = 15, __REQ_NOMERGE = 16, __REQ_STARTED = 17, __REQ_DONTPREP = 18, __REQ_QUEUED = 19, __REQ_ELVPRIV = 20, __REQ_FAILED = 21, __REQ_QUIET = 22, __REQ_PREEMPT = 23, __REQ_ALLOCED = 24, __REQ_COPY_USER = 25, __REQ_FLUSH_SEQ = 26, __REQ_IO_STAT = 27, __REQ_MIXED_MERGE = 28, __REQ_NR_BITS = 29, };;
+/*156*/ #define REQ_WRITE (1 << __REQ_WRITE)
+/*189*/ #define REQ_FLUSH (1 << __REQ_FLUSH)
+
+#endif

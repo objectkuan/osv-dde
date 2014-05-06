@@ -1,0 +1,13 @@
+allprojects {
+  group = 'com.cloudius'
+  repositories {
+    maven {
+  	 url 'http://reader:oamahG7e@cloudius.artifactoryonline.com/cloudius/repo/'
+    }
+  }
+}
+
+
+task wrapper(type: Wrapper) {
+ gradleVersion = '1.7'
+}

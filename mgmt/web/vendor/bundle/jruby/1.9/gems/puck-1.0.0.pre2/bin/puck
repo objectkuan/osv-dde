@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'puck'
+
+
+Puck::Jar.new(Puck::Configuration.get).create!

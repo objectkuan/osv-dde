@@ -1,0 +1,168 @@
+{
+    "apiVersion": "0.0.1",
+    "swaggerVersion": "1.2",
+    "basePath": "https://osv.io/api",
+    "resourcePath": "/jvm",
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "apis": [
+        {
+            "path": "/jvm/version",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "JAVA version",
+                    "notes": "return the version of the JAVA runtime",
+                    "responseClass": "string",
+                    "nickname": "getJavaVersion",
+                    "produces": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "parameters": [
+                    ],
+                    "deprecated": "false"
+                }
+            ]
+        },
+        {
+            "path": "/jvm/memory/balloon",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "JVM memory Balloon infomration",
+                    "notes": "",
+                    "responseClass": "Balloon",
+                    "nickname": "getBalloon",
+                    "produces": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "parameters": [
+                    ],
+                    "deprecated": "false"
+                }
+            ]
+        },
+        {
+            "path": "/jvm/memory/gc",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "get GC related infomrtion",
+                    "notes": "return a list of Memory Managers, each with its related infomration",
+                    "responseClass": "List[MemoryManager]",
+                    "nickname": "getGCinfo",
+                    "produces": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "parameters": [
+                    ],
+                    "deprecated": "false"
+                }
+            ]
+        },
+        {
+            "path": "/jvm/memory/gc",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Force GC",
+                    "notes": "",
+                    "responseClass": "void",
+                    "nickname": "getGCcount",
+                    "produces": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "parameters": [
+                    ],
+                    "deprecated": "false"
+                }
+            ]
+        },
+        {
+            "path": "/jvm/jmx",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "get a runtime MBean value",
+                    "notes": "",
+                    "responseClass": "string",
+                    "nickname": "getJMXvalue",
+                    "produces": [
+                        "application/json",
+                        "application/xml"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "path",
+                            "description": "JMX path to probe",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string",
+                            "paramType": "query"
+                        }
+                    ],
+                    "deprecated": "false"
+                }
+            ]
+        },
+        {
+            "path": "/jvm/jmx",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "set a configuration MBean value",
+                    "notes": "",
+                    "responseClass": "void",
+                    "nickname": "setJMXvalue",
+                    "parameters": [
+                        {
+                            "name": "path",
+                            "description": "JMX path to update",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string",
+                            "paramType": "query"
+                        }
+                    ],
+                    "deprecated": "false"
+                }
+            ]
+        }
+    ],
+    "models" : {
+        "Balloon": {
+            "properties": {
+                "size": {
+                    "type": "long"
+                }
+            }
+        },
+        "MemoryManager" : {
+            "description" : "memory manager",
+            "properties": {
+                "name":  {
+                    "type": "string",
+                    "description": "memory manager name"
+                },
+                "count": {
+                    "type": "long",
+                    "description": "total number of collections that have occurred"
+                },
+                "time": {
+                    "type": "long",
+                    "description": "accumulated collection elapsed time in ms"
+                },
+                "pools": {
+                    "type": "List[String]",
+                    "description": "List of Memeory Pool names"
+                }
+            }
+        }
+    }
+}
