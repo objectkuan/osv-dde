@@ -7,13 +7,13 @@
 
 #ifndef VIRTIO_SCSI_DRIVER_H
 #define VIRTIO_SCSI_DRIVER_H
-#include "drivers/virtio.hh"
+#include "drivers/virtio-orig/virtio.hh"
 #include "drivers/pci-device.hh"
 #include "drivers/scsi-common.hh"
 #include <osv/bio.h>
 #include <osv/types.h>
 
-namespace virtio {
+namespace virtio_orig {
 
 class scsi : public virtio_driver {
 public:

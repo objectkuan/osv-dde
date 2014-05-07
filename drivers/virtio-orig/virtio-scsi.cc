@@ -13,8 +13,8 @@
 #include "sched.hh"
 #include "interrupt.hh"
 #include "drivers/pci-device.hh"
-#include "drivers/virtio.hh"
-#include "drivers/virtio-scsi.hh"
+#include "drivers/virtio-orig/virtio.hh"
+#include "drivers/virtio-orig/virtio-scsi.hh"
 #include "drivers/scsi-common.hh"
 
 #include <string>
@@ -30,7 +30,7 @@
 
 using namespace memory;
 
-namespace virtio {
+namespace virtio_orig {
 
 int scsi::_instance = 0;
 
@@ -469,7 +469,7 @@ u32 scsi::get_driver_features(void)
 
 hw_driver* scsi::probe(hw_device* dev)
 {
-    return virtio::probe<scsi, VIRTIO_SCSI_DEVICE_ID>(dev);
+    return virtio_orig::probe<scsi, VIRTIO_SCSI_DEVICE_ID>(dev);
 }
 
 }

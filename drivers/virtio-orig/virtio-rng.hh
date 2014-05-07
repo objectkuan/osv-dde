@@ -12,13 +12,13 @@
 #include <osv/device.h>
 #include <osv/mutex.h>
 
-#include "drivers/virtio.hh"
+#include "drivers/virtio-orig/virtio.hh"
 #include "drivers/device.hh"
 #include "drivers/random.hh"
 
 #include <vector>
 
-namespace virtio {
+namespace virtio_orig {
 
 class rng : public virtio_driver, randomdev::hw_rng {
 public:

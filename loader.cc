@@ -24,11 +24,13 @@
 
 #include "drivers/acpi.hh"
 #include "drivers/driver.hh"
-#include "drivers/virtio-net.hh"
+//#include "drivers/virtio-net.hh"
 #include "drivers/virtio-blk.hh"
-#include "drivers/virtio-rng.hh"
+//#include "drivers/virtio-rng.hh"
 #include "drivers/virtio-orig/virtio-net.hh"
-#include "drivers/virtio-orig/virtio-blk.hh"
+//#include "drivers/virtio-orig/virtio-blk.hh"
+#include "drivers/virtio-orig/virtio-scsi.hh"
+#include "drivers/virtio-orig/virtio-rng.hh"
 #include "drivers/xenfront-xenbus.hh"
 
 #include "sched.hh"
@@ -261,9 +263,9 @@ void* do_main_thread(void *_commands)
     virtio_net_init();
     hw::driver_manager* drvman = hw::driver_manager::instance();
     drvman->register_driver(virtio::blk::probe);
-    // drvman->register_driver(virtio::scsi::probe);
+    //drvman->register_driver(virtio_orig::scsi::probe);
     drvman->register_driver(virtio_orig::net::probe);
-    // drvman->register_driver(virtio::rng::probe);
+    //drvman->register_driver(virtio_orig::rng::probe);
     drvman->register_driver(xenfront::xenbus::probe);
     drvman->load_all();
     drvman->list_drivers();

@@ -180,6 +180,7 @@ protected:
 template <typename T, u16 ID>
 hw_driver* probe(hw_device* dev)
 {
+    printf("here = %d \n", ID);
     if (auto pci_dev = dynamic_cast<pci::device*>(dev)) {
         if (pci_dev->get_id() == hw_device_id(VIRTIO_VENDOR_ID, ID)) {
             return new T(*pci_dev);

@@ -5,14 +5,14 @@
  * BSD license as described in the LICENSE file in the top-level directory.
  */
 
-#include "drivers/virtio-rng.hh"
+#include "drivers/virtio-orig/virtio-rng.hh"
 #include "mmu.hh"
 #include <algorithm>
 #include <iterator>
 
 using namespace std;
 
-namespace virtio {
+namespace virtio_orig {
 rng::rng(pci::device& pci_dev)
     : virtio_driver(pci_dev)
     , _gsi(pci_dev.get_interrupt_line(), [&] { ack_irq(); }, [&] { handle_irq(); })
@@ -97,7 +97,7 @@ void rng::refill()
 
 hw_driver* rng::probe(hw_device *dev)
 {
-    return virtio::probe<rng, VIRTIO_RNG_DEVICE_ID>(dev);
+    return virtio_orig::probe<rng, VIRTIO_RNG_DEVICE_ID>(dev);
 }
 
 }

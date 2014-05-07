@@ -552,7 +552,7 @@ drivers += drivers/virtio/virtio.o
 drivers += drivers/virtio/virtio-blk.o
 drivers += drivers/virtio/virtio-net.o
 
-drivers += drivers/virtio-orig/virtio.o drivers/virtio-orig/virtio-blk.o drivers/virtio-orig/virtio-net.o drivers/virtio-orig/virtio-vring.o
+drivers += drivers/virtio-orig/virtio.o drivers/virtio-orig/virtio-blk.o drivers/virtio-orig/virtio-net.o drivers/virtio-orig/virtio-vring.o drivers/virtio-orig/virtio-scsi.o drivers/virtio-orig/virtio-rng.o
 
 objects = bootfs.o
 objects += arch/x64/dump.o
