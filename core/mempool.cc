@@ -23,11 +23,11 @@
 #include <osv/trace.hh>
 #include <lockfree/ring.hh>
 #include <osv/percpu-worker.hh>
+#include <irq-preempt-lock.hh>
 #include <preempt-lock.hh>
 #include <sched.hh>
 #include <algorithm>
 #include "prio.hh"
-#include <stdlib.h>
 
 TRACEPOINT(trace_memory_malloc, "buf=%p, len=%d", void *, size_t);
 TRACEPOINT(trace_memory_malloc_large, "buf=%p, len=%d", void *, size_t);
@@ -321,7 +321,6 @@ void pool::free_different_cpu(free_object* obj, unsigned obj_cpu)
 void pool::free(void* object)
 {
     trace_pool_free(this, object);
-
     WITH_LOCK(preempt_lock) {
 
         free_object* obj = static_cast<free_object*>(object);
@@ -329,14 +328,20 @@ void pool::free(void* object)
         unsigned obj_cpu = header->cpu_id;
         unsigned cur_cpu = mempool_cpuid();
 
+        delegate_queue& dq = dqueues[obj_cpu];
         if (obj_cpu == cur_cpu) {
             // free from the same CPU this object has been allocated on.
+	    while(!dq.empty()) {
+                free_same_cpu(dq.front(), obj_cpu);
+                dq.pop();
+            }
             free_same_cpu(obj, obj_cpu);
         } else {
             // free from a different CPU. we try to hand the buffer
             // to the proper worker item that is pinned to the CPU that this buffer
             // was allocated from, so it'll free it.
-            free_different_cpu(obj, obj_cpu);
+            dq.push(obj);
+            // free_different_cpu(obj, obj_cpu);
         }
     }
 }

@@ -19,6 +19,7 @@
 #include <osv/percpu.hh>
 #include <osv/condvar.h>
 #include <osv/semaphore.hh>
+#include <queue>
 
 namespace memory {
 
@@ -54,6 +55,8 @@ private:
     void add_page();
     static page_header* to_header(free_object* object);
 
+    typedef std::queue<free_object*> delegate_queue;
+    delegate_queue dqueues[sched::max_cpus];
     // should get called with the preemption lock taken
     void free_same_cpu(free_object* obj, unsigned cpu_id);
     void free_different_cpu(free_object* obj, unsigned obj_cpu);
