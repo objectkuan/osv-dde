@@ -236,7 +236,7 @@ if (__name__ == "__main__"):
                         help="needs root. tap networking and vhost")
     parser.add_argument("-m", "--memsize", action="store", default="2G",
                         help="specify memory: ex. 1G, 2G, ...")
-    parser.add_argument("-c", "--vcpus", action="store", default="4",
+    parser.add_argument("-c", "--vcpus", action="store", default="1",
                         help="specify number of vcpus")
     parser.add_argument("-e", "--execute", action="store", default=None, metavar="CMD",
                         help="edit command line before execution")

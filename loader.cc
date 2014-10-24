@@ -262,7 +262,7 @@ void* do_main_thread(void *_commands)
     virtio_blk_init();
     virtio_net_init();
     hw::driver_manager* drvman = hw::driver_manager::instance();
-    drvman->register_driver(virtio_orig::blk::probe);
+    drvman->register_driver(virtio::blk::probe);
     //drvman->register_driver(virtio_orig::scsi::probe);
     drvman->register_driver(virtio_orig::net::probe);
     //drvman->register_driver(virtio_orig::rng::probe);
